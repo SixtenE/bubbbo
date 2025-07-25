@@ -11,6 +11,7 @@ import './styles.css'
 export const createRouter = () => {
   const router = routerWithQueryClient(
     createTanstackRouter({
+      defaultPreload: 'intent',
       routeTree,
       context: {
         ...TanstackQuery.getContext(),
