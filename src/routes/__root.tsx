@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
-import Header from '../components/Header'
+import { SignIn, SignedIn, SignedOut } from '@clerk/clerk-react'
 
 import ClerkProvider from '../integrations/clerk/provider.tsx'
 
@@ -45,12 +45,23 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: () => (
     <RootDocument>
       <ClerkProvider>
-        <Header />
+        <SignedOut>
+          <SignIn
+            appearance={{
+              elements: {
+                formButtonPrimary:
+                  'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded',
+              },
+            }}
+            signInUrl="/sign-in"
+          />
+        </SignedOut>
+        <SignedIn>
+          <Outlet />
+          <TanStackRouterDevtools />
 
-        <Outlet />
-        <TanStackRouterDevtools />
-
-        <TanStackQueryLayout />
+          <TanStackQueryLayout />
+        </SignedIn>
       </ClerkProvider>
     </RootDocument>
   ),
@@ -62,7 +73,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="light">
         {children}
         <Scripts />
       </body>

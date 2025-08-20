@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
+import viteReact from '@vitejs/plugin-react'
 
 const config = defineConfig({
   plugins: [
@@ -13,8 +13,9 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart({
       target: 'node-server',
+      customViteReactPlugin: true,
     }),
-    react({}),
+    viteReact(),
   ],
 })
 
