@@ -46,15 +46,9 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     <RootDocument>
       <ClerkProvider>
         <SignedOut>
-          <SignIn
-            appearance={{
-              elements: {
-                formButtonPrimary:
-                  'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded',
-              },
-            }}
-            signInUrl="/sign-in"
-          />
+          <div className="flex h-screen w-screen items-center justify-center">
+            <SignIn />
+          </div>
         </SignedOut>
         <SignedIn>
           <Outlet />
